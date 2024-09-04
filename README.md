@@ -4,12 +4,10 @@ Plus, capability of data analysis, such as quantification of critical exponents,
 
 Main Programs
 
-BTW_Manna.m
-Includes both the Bak-Tang-Wiesenfeld (BTW) and Manna models of self-organized criticality (SOC).This program allows users to set a series of model parameters such as size and number of steps.
+BTW_Manna.m : Includes both the Bak-Tang-Wiesenfeld (BTW) and Manna models of self-organized criticality (SOC).This program allows users to set a series of model parameters such as size and number of steps.
 Specific features include: simulation execution, data saving to local storage, visualization of results, and simple data fitting.
 
-Continuous_energy.m
-Includes the Zhang model, which uses continuous energy variables to simulate SOC phenomena.
+Continuous_energy.m : Includes the Zhang model, which uses continuous energy variables to simulate SOC phenomena.
 Users can set model parameters such as size and number of steps.Similar features include: running simulations, saving data to local storage, visualizing results, and simple data fitting.
 
 Utility Functions
