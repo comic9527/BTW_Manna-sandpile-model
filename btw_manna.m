@@ -149,23 +149,23 @@ for k = 1:length(pro)
         distan = sqrt(mean(rc2));
         perimeter = cal_peri(ar_m);
 
-%         figure(1),set(figure(1), 'Position', [100, 100, 800, 800]);imagesc(ar_m);
-%         titlestr = ['the step is ',num2str(n),newline,' Rg = ',num2str(distan),' loop length = ',num2str(perimeter)];
-%         title(titlestr,"FontSize",18);
-%         axis square;
+        figure(1),set(figure(1), 'Position', [100, 100, 800, 800]);imagesc(ar_m);
+        titlestr = ['the step is ',num2str(n),newline,' R_{g} = ',num2str(distan),' loop length = ',num2str(perimeter)];
+        title(titlestr,"FontSize",18);
+        axis square;
         t(n) = ti;
         s(n) = si;
         Rg(n) = distan;
         perim(n) = perimeter;
         be(n) = bei;
         sand = new_sand;
-%         figure(2);set(figure(2), 'Position', [950, 100, 800, 800]);
-%         imagesc(sand);
-%         colorbar;
-%         titlestr = ['the step is ',num2str(n),newline,' t = ',num2str(ti)];
-%         title(titlestr,FontSize=18);
-%         axis square;
-%         pause(0.001);
+        figure(2);set(figure(2), 'Position', [950, 100, 800, 800]);
+        imagesc(sand);
+        colorbar;
+        titlestr = ['the step is ',num2str(n),newline,' t = ',num2str(ti)];
+        title(titlestr,FontSize=18);
+        axis square;
+        pause(0.001);
     end
     matrixs{1} = jug_matrix;
     avesand = ns./(N*N);
@@ -186,7 +186,7 @@ for k = 1:length(pro)
     axes('Units', 'normalized', 'Position', [.001 .001 .998 .998], 'XTickLabel', '', 'YTickLabel', '');
     imshow(cell2mat(matrixs(1)));axis square;axis off;
 
-    start_point2 = sum(t(1:start_point-1)); %根据start_point 计算start_point2
+    start_point2 = sum(t(1:start_point-1));
     Y1 = fft(Aves(start_point2:end));
     Q1 = abs(Y1).^2/(T-start_point2+1);
     Y2 = fft(San3(start_point2:end));
@@ -213,25 +213,25 @@ for k = 1:length(pro)
     axchange(md5);
     subplot(2,4,5);
     plot(qx1,qy1,'r','linewidth',2);hold off;axis square;
-    title('Power spectrum:Aves');
+    title('Power spectrum');xlabel('Frequency');ylabel('Intensity');
     axchange(md52);
     subplot(2,4,2);plot(1:T,San3,'linewidth',2);xlabel('Number of time step');axis square;
     title('Proportion of grid points with sand number 3');
     axchange(md5);
     subplot(2,4,6);plot(qx2,qy2,'r','linewidth',2);hold off;axis square;
-    title('Power spectrum:San3');
+    title('Power spectrum');xlabel('Frequency');ylabel('Intensity');
     axchange(md52);
     subplot(2,4,3);plot(1:T,S,'linewidth',2);xlabel('Number of time step');axis square;
     title('Number of reactive cells');
     axchange(md5);
     subplot(2,4,7);plot(qx3,qy3,'r','linewidth',2);hold off;axis square;
-    title('Power spectrum:S');
+    title('Power spectrum');xlabel('Frequency');ylabel('Intensity');
     axchange(md52);
     subplot(2,4,4);plot(1:T,Be,'linewidth',2);xlabel('Number of time step');axis square;
     title('Number of sand that escapes from the boundary');
     axchange(md5);
     subplot(2,4,8);plot(qx4,qy4,'r','linewidth',2);hold off;axis square;
-    title('Power spectrum:Be');
+    title('Power spectrum');xlabel('Frequency');ylabel('Intensity');
     axchange(md52);
 
     qpsdata1 = [q_x',Q1',Q2',Q3',Q4'];
@@ -253,8 +253,8 @@ for k = 1:length(pro)
 
     Rg2 = round(Rg);
     perim2 = round(perim);
-    figure(6),set(figure(6), 'Position', [100, 100, 1600, 800]);%sgtitle('s,t,area,Rg,perim频率显示','FontName', 'Microsoft YaHei');
-    md6 = 2; % 1 线性 2 loglog 3 logx 4 logy
+    figure(6),set(figure(6), 'Position', [100, 100, 1600, 800]);
+    md6 = 2;
 
     ws = s(start_point:end);
     wt = t(start_point:end);
@@ -272,8 +272,8 @@ for k = 1:length(pro)
     subplot(2,3,1);[wsx,wsy] = whisto(ws);xlabel('s');ylabel('Proportion');axis square;axchange(md6);
     subplot(2,3,2);[wtx,wty] = whisto(wt);xlabel('t');ylabel('Proportion');axis square;axchange(md6);
     subplot(2,3,3);[wax,way] = whisto(warea);xlabel('area');ylabel('Proportion');axis square;axchange(md6);
-    subplot(2,3,4);[wrx,wry] = whisto(wRg2);xlabel('Rg');ylabel('Proportion');axis square;axchange(md6);
-    subplot(2,3,5);[wpx,wpy] = whisto(wperim2);xlabel('perim');ylabel('Proportion');axis square;axchange(md6);
+    subplot(2,3,4);[wrx,wry] = whisto(wRg2);xlabel('R_{g}');ylabel('Proportion');axis square;axchange(md6);
+    subplot(2,3,5);[wpx,wpy] = whisto(wperim2);xlabel('peri');ylabel('Proportion');axis square;axchange(md6);
 
 
     wsy_acc = cumsum(wsy(end:-1:1));
@@ -287,12 +287,12 @@ for k = 1:length(pro)
     wpy_acc = cumsum(wpy(end:-1:1));
     wpy_acc = wpy_acc(end:-1:1);
     figure(7);set(figure(7), 'Position', [100, 100, 1600, 800]);
-    md7 = 1;
-    subplot(2,3,1);plot(wsx,wsy_acc,'linewidth',2);xlabel('s');ylabel('Accumulation frequency');axis square;axchange(md7);
-    subplot(2,3,2);plot(wtx,wty_acc,'linewidth',2);xlabel('t');ylabel('Accumulation frequency');axis square;axchange(md7);
-    subplot(2,3,3);plot(wax,way_acc,'linewidth',2);xlabel('area');ylabel('Accumulation frequency');axis square;axchange(md7);
-    subplot(2,3,4);plot(wrx,wry_acc,'linewidth',2);xlabel('rg');ylabel('Accumulation frequency');axis square;axchange(md7);
-    subplot(2,3,5);plot(wpx,wpy_acc,'linewidth',2);xlabel('perim');ylabel('Accumulation frequency');axis square;axchange(md7);
+    md7 = 2;
+    subplot(2,3,1);plot(wsx,wsy_acc,'linewidth',2);xlabel('s');ylabel('Cumulative frequency');axis square;axchange(md7);
+    subplot(2,3,2);plot(wtx,wty_acc,'linewidth',2);xlabel('t');ylabel('Cumulative frequency');axis square;axchange(md7);
+    subplot(2,3,3);plot(wax,way_acc,'linewidth',2);xlabel('area');ylabel('Cumulative frequency');axis square;axchange(md7);
+    subplot(2,3,4);plot(wrx,wry_acc,'linewidth',2);xlabel('R_{g}');ylabel('Cumulative frequency');axis square;axchange(md7);
+    subplot(2,3,5);plot(wpx,wpy_acc,'linewidth',2);xlabel('peri');ylabel('Cumulative frequency');axis square;axchange(md7);
 
 
     wdata = {wsx',wsy',wtx',wty',wax',way',wrx',wry',wpx',wpy'};
@@ -318,8 +318,8 @@ for k = 1:length(pro)
     subplot(2,3,1);wssl= w_line_fit(wsx,wsy,'b');xlabel('log(s)');ylabel('log(Frequency)');axis square;hold off;axchange(md8);
     subplot(2,3,2);wtsl = w_line_fit(wtx,wty,'b');xlabel('log(t)');ylabel('log(Frequency)');axis square;hold off;axchange(md8);
     subplot(2,3,3);wasl = w_line_fit(wax,way,'b');xlabel('log(area)');ylabel('log(Frequency)');axis square;hold off;axchange(md8);
-    subplot(2,3,4);wrsl = w_line_fit(wrx,wry,'b');xlabel('log(Rg)');ylabel('log(Frequency)');axis square;hold off;axchange(md8);
-    subplot(2,3,5);wpsl = w_line_fit(wpx,wpy,'b');xlabel('log(perim)');ylabel('log(Frequency)');axis square;hold off;axchange(md8);
+    subplot(2,3,4);wrsl = w_line_fit(wrx,wry,'b');xlabel('log R_{g}', 'Interpreter', 'tex');ylabel('log(Frequency)');axis square;hold off;axchange(md8);
+    subplot(2,3,5);wpsl = w_line_fit(wpx,wpy,'b');xlabel('log(peri)');ylabel('log(Frequency)');axis square;hold off;axchange(md8);
 
     figure(9),set(figure(9), 'Position', [100, 10, 2000, 800]);
     md10 = 1;
@@ -346,27 +346,27 @@ for k = 1:length(pro)
     title('Average number of sand per cell');
     axchange(md10);
     subplot(2,4,5);plot(px1,py1,'r','linewidth',2);hold off;axis square;
-    title('Power spectrum');
+    title('Power spectrum');xlabel('Frequency');ylabel('Intensity');
     axchange(md92);
     subplot(2,4,2);
     plot(1:num,san3per,'linewidth',2);xlabel('Number of input sand');axis square;
     title('Proportion of grid points with sand number 3');
     axchange(md10);
     subplot(2,4,6);plot(px2,py2,'r','linewidth',2);hold off;axis square;
-    title('Power spectrum');
+    title('Power spectrum');xlabel('Frequency');ylabel('Intensity');
     axchange(md92);
     subplot(2,4,3);plot(1:num,s,'linewidth',2);xlabel('Number of input sand');axis square;
     title('Number of reactive cells');
     axchange(md10);
     subplot(2,4,7);plot(px3,py3,'r','linewidth',2);hold off;axis square;
-    title('Power spectrum');
+    title('Power spectrum');xlabel('Frequency');ylabel('Intensity');
     axchange(md92);
     subplot(2,4,4);plot(1:num,be,'linewidth',2);xlabel('Number of input sand');axis square;
     title('Number of sand that escapes from the boundary');
     axchange(md10);
     subplot(2,4,8);
     plot(px4,py4,'r','linewidth',2);hold off;axis square;
-    title('Power spectrum');
+    title('Power spectrum');xlabel('Frequency');ylabel('Intensity');
     axchange(md92);
 
     ppsdata1 = [p_x',P1',P2',P3',P4'];
@@ -410,7 +410,7 @@ for k = 1:length(pro)
 
     subplot(1,2,1);
     plot(bins,s_average,'-o',bins,t_average,'-o',bins,area_average,'-o',bins,perim_average,'-o','LineWidth',2);
-    legend('s','t','area','perim');xlabel('Rg');axis square;
+    legend('s','t','area','peri','Location', 'NorthWest');xlabel('R_{g}');axis square;
     axchange(md10);
 
     subplot(1,2,2);
@@ -421,7 +421,7 @@ for k = 1:length(pro)
     hold off;
     legend( {'average s', ['Fitting of average s: ','slope = ',num2str(sl1)], 'average t', ['Fitting of average t: ','slope = ',num2str(sl2)],'average area', ['Fitting of average area: ','slope = ',num2str(sl3)],'average perim', ['Fitting of average perim: ','slope = ',num2str(sl4)]} ...
         , 'Location', 'NorthWest', 'Interpreter', 'none' );
-    xlabel( 'log(Rg)', 'Interpreter', 'none' );
+    xlabel('log R_{g}', 'Interpreter', 'tex');
     ylabel( 'log(y)', 'Interpreter', 'none' )
     axis square;
 
