@@ -340,9 +340,9 @@ qmax=pi./a;
 q=linspace(qmin,qmax,len);
 x=q(1:end-1);
 ux=x';
-[~,pps_ave] = fft_bin(ux,P1,base,qmin);
-[~,pps_s]=fft_bin(ux,P2,base,qmin);
-[binn,pps_be]=fft_bin(ux,P3,base,qmin);
+[~,pps_ave] = fft_bin(ux,P1,base);
+[~,pps_s]=fft_bin(ux,P2,base);
+[binn,pps_be]=fft_bin(ux,P3,base);
 
 subplot(2,3,4);plot(binn,pps_ave,'linewidth',2);title('Power spectrum');xlabel('Frequency');ylabel('Intensity');axchange(2);
 subplot(2,3,5);plot(binn,pps_s,'linewidth',2);title('Power spectrum');xlabel('Frequency');ylabel('Intensity');axchange(2);
@@ -390,9 +390,9 @@ qmax=pi./a;
 q=linspace(qmin,qmax,len);
 x=q(1:end-1);
 ux=x';
-[~,ps_ave] = fft_bin(ux,Q1,base,qmin);
-[~,ps_s]=fft_bin(ux,Q2,base,qmin);
-[bins,ps_be]=fft_bin(ux,Q3,base,qmin);
+[~,ps_ave] = fft_bin(ux,Q1,base);
+[~,ps_s]=fft_bin(ux,Q2,base);
+[bins,ps_be]=fft_bin(ux,Q3,base);
 
 subplot(2,3,4);plot(bins,ps_ave,'linewidth',2);title('Power spectrum');xlabel('Frequency');ylabel('Intensity');axis square;axchange(2);
 subplot(2,3,5);plot(bins,ps_s,'linewidth',2);title('Power spectrum');xlabel('Frequency');ylabel('Intensity');axis square;axchange(2);
